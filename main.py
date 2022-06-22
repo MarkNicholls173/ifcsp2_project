@@ -32,6 +32,11 @@ class EmployeeManagementGUI(tk.Tk):
         self.text_first_name = tk.Entry(main_frame, textvariable=self.first_name, font=font_helv)
         self.text_first_name.grid(row=0, column=1, padx=10, pady=10, sticky='w')
 
+        # Last Name
+        lbl_last_name = tk.Label(main_frame, text='Last Name', font=font_helv)
+        lbl_last_name.grid(row=0, column=3, padx=10, pady=10, sticky='w')
+        self.text_last_name = tk.Entry(main_frame, textvariable=self.last_name, font=font_helv)
+        self.text_last_name.grid(row=0, column=4, padx=10, pady=10, sticky='w')
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
