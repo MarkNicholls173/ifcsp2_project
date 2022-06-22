@@ -1,6 +1,6 @@
 import tkinter as tk
 import pandas as pd
-from tkinter import ttk, VERTICAL, RIGHT, Y, HORIZONTAL, BOTTOM, X
+from tkinter import ttk, VERTICAL, RIGHT, Y, HORIZONTAL, BOTTOM, X, filedialog, messagebox, LEFT
 
 
 class EmployeeManagementGUI(tk.Tk):
@@ -17,6 +17,12 @@ class EmployeeManagementGUI(tk.Tk):
         self.last_name = tk.StringVar()
         self.position = tk.StringVar()
         self.salary = tk.StringVar()
+        #
+        # space for rest of emp data
+        #
+        self.df = pd.DataFrame()
+        self.file_types = (('Comma Separated Values', '*.csv'), ('All Files', '*.*'))
+
 
         # Window Setup
         self.title('Employee Management System')  # TODO can i add employee id here?
@@ -67,7 +73,7 @@ class EmployeeManagementGUI(tk.Tk):
         btn_frame.grid(row=8, column=0, columnspan=4, padx=10, pady=10, sticky='w')
 
         # TODO Load Data Button
-        tk.Button(btn_frame, command='', text='Load Data', font=font_ems_bold,
+        tk.Button(btn_frame, command=self.load_file, text='Load Data', font=font_ems_bold,
                   width=15).grid(row=0, column=0)
 
         # TODO Save Data Button
@@ -116,6 +122,36 @@ class EmployeeManagementGUI(tk.Tk):
         sbh.config(command=self.staff_list_tv.xview)
         # Bind double click to select row
         self.staff_list_tv.bind('<Double-1>', "")
+
+    def load_file(self):
+        """Load staff data from a csv file selected by the user"""
+        filename = filedialog.askopenfilename(title="Select A File",
+                                              filetype=self.file_types)
+        if filename[-3:] == 'csv':
+            self.df = pd.read_csv(filename)
+            #print(self.df)
+            self.display_all()
+        else:
+            messagebox.showerror(title="Employee Management",
+                                 message="File type not supported")
+
+    def display_all(self):
+        """Display the data frame in the staff list treeview"""
+        # TODO does not display with the right row height
+        # clear the previous list
+        self.staff_list_tv.delete(*self.staff_list_tv.get_children())
+        # set up the headings
+        self.staff_list_tv['column'] = list(self.df.columns)
+        self.staff_list_tv['show'] = 'headings'
+        for column in self.staff_list_tv['columns']:
+            self.staff_list_tv.heading(column, text=column)
+        # convert data frame to list of lists as treeview does not work with dataframes
+        df_rows = self.df.to_numpy().tolist()
+        # insert data in the treeview row by row
+        for row in df_rows:
+            self.staff_list_tv.insert('', 'end', values=row)
+        # display treeview in the frame
+        self.staff_list_tv.pack(side=LEFT)
 
 
 # Press the green button in the gutter to run the script.
