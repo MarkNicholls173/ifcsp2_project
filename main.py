@@ -23,7 +23,7 @@ class EmployeeManagementGUI(tk.Tk):
         self.geometry('800x600+600+100')
 
         # Widgets
-        # Main Frame for ....
+        # Main Frame - data entry form
         main_frame = tk.Frame(self)
         main_frame.grid(row=0, column=0, columnspan=4)
 
@@ -50,6 +50,17 @@ class EmployeeManagementGUI(tk.Tk):
         lbl_salary.grid(row=1, column=2, padx=10, pady=10, sticky='w')
         self.text_salary = tk.Entry(main_frame, textvariable=self.salary, font=font_ems)
         self.text_salary.grid(row=1, column=3, padx=10, pady=10, sticky='w')
+
+        # Email
+        # HomeAddress
+        # HomePostcode
+        # HomePhone
+        # MobilePhone
+        # StartDate
+        # ReportsTo
+        # EmergencyContactName
+        # EmergencyContactPhone
+        # BirthDate
 
 
 # Press the green button in the gutter to run the script.
