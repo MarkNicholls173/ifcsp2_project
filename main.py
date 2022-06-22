@@ -1,6 +1,6 @@
 import tkinter as tk
 import pandas as pd
-from tkinter import ttk
+from tkinter import ttk, VERTICAL, RIGHT, Y, HORIZONTAL, BOTTOM, X
 
 
 class EmployeeManagementGUI(tk.Tk):
@@ -67,19 +67,53 @@ class EmployeeManagementGUI(tk.Tk):
         btn_frame.grid(row=8, column=0, columnspan=4, padx=10, pady=10, sticky='w')
 
         # TODO Load Data Button
-        tk.Button(btn_frame, command='', text='Load Data', font=font_ems_bold, width=15).grid(row=0, column=0)
+        tk.Button(btn_frame, command='', text='Load Data', font=font_ems_bold,
+                  width=15).grid(row=0, column=0)
 
         # TODO Save Data Button
-        tk.Button(btn_frame, command='', text='Save Data', font=font_ems_bold, width=15).grid(row=0, column=1, padx=5)
+        tk.Button(btn_frame, command='', text='Save Data', font=font_ems_bold,
+                  width=15).grid(row=0, column=1, padx=5)
 
         # TODO Add Employee Button
-        tk.Button(btn_frame, command='', text='Add Employee',  font=font_ems_bold, width=15).grid(row=0, column=2, padx=5)
+        tk.Button(btn_frame, command='', text='Add Employee',  font=font_ems_bold,
+                  width=15).grid(row=0, column=2, padx=5)
 
         # TODO Delete Employee Button
-        tk.Button(btn_frame, command='', text='Delete Employee',  font=font_ems_bold, width=15).grid(row=0, column=3, padx=5)
+        tk.Button(btn_frame, command='', text='Delete Employee',  font=font_ems_bold,
+                  width=15).grid(row=0, column=3, padx=5)
 
         # TODO Save Changes Button
-        tk.Button(btn_frame, command='', text='Save Changes', font=font_ems_bold, width=15).grid(row=0, column=4)
+        tk.Button(btn_frame, command='', text='Save Changes', font=font_ems_bold,
+                  width=15).grid(row=0, column=4)
+
+        # Staff List Frame
+        staff_list_frame = ttk.Frame(self)
+        staff_list_frame.place(x=10, y=400, width=880, height=190)
+
+        # Staff List Style
+        style = ttk.Style(self)
+        style.theme_use('winnative')
+        style.configure('Treeview', font=font_ems, columnwidth=10, rowheight=10,
+                        background='white', fieldbackground='white')
+        style.configure('Treeview.Heading', font=font_ems_bold)
+        style.map('Treeview', background=[('selected', 'blue')])
+        style.configure('TFrame', background='white')
+
+        # Staff List Treeview
+        self.staff_list_tv = ttk.Treeview(staff_list_frame, columns=(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15),
+                                          show='headings')
+
+        # Staff List Scroll Bars
+        # Vertical
+        sbv = ttk.Scrollbar(staff_list_frame, orient=VERTICAL)
+        sbv.pack(side=RIGHT, fill=Y)
+        self.staff_list_tv.config(yscrollcommand=sbv.set)
+        sbv.config(command=self.staff_list_tv.yview)
+        # Horizontal
+        sbh = ttk.Scrollbar(staff_list_frame, orient=HORIZONTAL)
+        sbh.pack(side=BOTTOM, fill=X)
+        self.staff_list_tv.config(xscrollcommand=sbh.set)
+        sbh.config(command=self.staff_list_tv.xview)
 
 
 # Press the green button in the gutter to run the script.
