@@ -77,19 +77,19 @@ class EmployeeManagementGUI(tk.Tk):
                   width=15).grid(row=0, column=0)
 
         # TODO Save Data Button
-        tk.Button(btn_frame, command='', text='Save Data', font=font_ems_bold,
+        tk.Button(btn_frame, command=self.save_file, text='Save Data', font=font_ems_bold,
                   width=15).grid(row=0, column=1, padx=5)
 
         # TODO Add Employee Button
-        tk.Button(btn_frame, command='', text='Add Employee',  font=font_ems_bold,
+        tk.Button(btn_frame, command=self.add_record, text='Add Employee',  font=font_ems_bold,
                   width=15).grid(row=0, column=2, padx=5)
 
         # TODO Delete Employee Button
-        tk.Button(btn_frame, command='', text='Delete Employee',  font=font_ems_bold,
+        tk.Button(btn_frame, command=self.delete_record, text='Delete Employee',  font=font_ems_bold,
                   width=15).grid(row=0, column=3, padx=5)
 
         # TODO Save Changes Button
-        tk.Button(btn_frame, command='', text='Save Changes', font=font_ems_bold,
+        tk.Button(btn_frame, command=self.save_changes, text='Save Changes', font=font_ems_bold,
                   width=15).grid(row=0, column=4)
 
         # Staff List Frame
@@ -99,7 +99,7 @@ class EmployeeManagementGUI(tk.Tk):
         # Staff List Style
         style = ttk.Style(self)
         style.theme_use('winnative')
-        style.configure('Treeview', font=font_ems, columnwidth=10, rowheight=10,
+        style.configure('Treeview', font=font_ems, columnwidth=10, rowheight=20,
                         background='white', fieldbackground='white')
         style.configure('Treeview.Heading', font=font_ems_bold)
         style.map('Treeview', background=[('selected', 'blue')])
@@ -152,6 +152,30 @@ class EmployeeManagementGUI(tk.Tk):
             self.staff_list_tv.insert('', 'end', values=row)
         # display treeview in the frame
         self.staff_list_tv.pack(side=LEFT)
+
+    # TODO Function to save data
+    def save_file(self):
+        """Function to save staff list data to a file selected by the user"""
+        pass
+
+    # TODO Function to add an employee
+    def add_record(self):
+        """Function to add a new employee"""
+        pass
+
+    # TODO Function to delete an employee record
+    def delete_record(self):
+        """Function to delete an employee record"""
+        pass
+
+    # TODO Function to save changes to the current record
+    def save_changes(self):
+        """Function to save changes to the current record"""
+
+    # TODO function to clear boxes
+    def clear_boxes(self):
+        """function to clear all the boxes in the form"""
+        pass
 
 
 # Press the green button in the gutter to run the script.
