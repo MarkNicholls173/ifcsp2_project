@@ -100,8 +100,8 @@ class EmployeeManagementGUI(tk.Tk):
         style.configure('TFrame', background='white')
 
         # Staff List Treeview
-        self.staff_list_tv = ttk.Treeview(staff_list_frame, columns=(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15),
-                                          show='headings')
+        self.staff_list_tv = ttk.Treeview(staff_list_frame, show='headings',
+                                          columns=(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15))
 
         # Staff List Scroll Bars
         # Vertical
@@ -114,6 +114,8 @@ class EmployeeManagementGUI(tk.Tk):
         sbh.pack(side=BOTTOM, fill=X)
         self.staff_list_tv.config(xscrollcommand=sbh.set)
         sbh.config(command=self.staff_list_tv.xview)
+        # Bind double click to select row
+        self.staff_list_tv.bind('<Double-1>', "")
 
 
 # Press the green button in the gutter to run the script.
