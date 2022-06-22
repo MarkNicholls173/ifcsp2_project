@@ -19,8 +19,8 @@ class EmployeeManagementGUI(tk.Tk):
         self.salary = tk.StringVar()
 
         # Window Setup
-        self.title('Employee Management System')  # can i add employee id here?
-        self.geometry('800x600+600+100')
+        self.title('Employee Management System')  # TODO can i add employee id here?
+        self.geometry('900x600+600+100')
 
         # Widgets
         # Main Frame - data entry form
@@ -51,16 +51,35 @@ class EmployeeManagementGUI(tk.Tk):
         self.text_salary = tk.Entry(main_frame, textvariable=self.salary, font=font_ems)
         self.text_salary.grid(row=1, column=3, padx=10, pady=10, sticky='w')
 
-        # Email
-        # HomeAddress
-        # HomePostcode
-        # HomePhone
-        # MobilePhone
-        # StartDate
-        # ReportsTo
-        # EmergencyContactName
-        # EmergencyContactPhone
-        # BirthDate
+        # TODO Email
+        # TODO HomeAddress
+        # TODO HomePostcode
+        # TODO HomePhone
+        # TODO MobilePhone
+        # TODO StartDate
+        # TODO ReportsTo
+        # TODO EmergencyContactName
+        # TODO EmergencyContactPhone
+        # TODO BirthDate
+
+        # Button Frame
+        btn_frame = tk.Frame(main_frame)
+        btn_frame.grid(row=8, column=0, columnspan=4, padx=10, pady=10, sticky='w')
+
+        # TODO Load Data Button
+        tk.Button(btn_frame, command='', text='Load Data', font=font_ems_bold, width=15).grid(row=0, column=0)
+
+        # TODO Save Data Button
+        tk.Button(btn_frame, command='', text='Save Data', font=font_ems_bold, width=15).grid(row=0, column=1, padx=5)
+
+        # TODO Add Employee Button
+        tk.Button(btn_frame, command='', text='Add Employee',  font=font_ems_bold, width=15).grid(row=0, column=2, padx=5)
+
+        # TODO Delete Employee Button
+        tk.Button(btn_frame, command='', text='Delete Employee',  font=font_ems_bold, width=15).grid(row=0, column=3, padx=5)
+
+        # TODO Save Changes Button
+        tk.Button(btn_frame, command='', text='Save Changes', font=font_ems_bold, width=15).grid(row=0, column=4)
 
 
 # Press the green button in the gutter to run the script.
