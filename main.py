@@ -23,7 +23,6 @@ class EmployeeManagementGUI(tk.Tk):
         self.df = pd.DataFrame()
         self.file_types = (('Comma Separated Values', '*.csv'), ('All Files', '*.*'))
 
-
         # Window Setup
         self.title('Employee Management System')  # TODO can i add employee id here?
         self.geometry('900x600+600+100')
@@ -125,11 +124,9 @@ class EmployeeManagementGUI(tk.Tk):
 
     def load_file(self):
         """Load staff data from a csv file selected by the user"""
-        filename = filedialog.askopenfilename(title="Select A File",
-                                              filetype=self.file_types)
+        filename = filedialog.askopenfilename(title="Select A File", filetype=self.file_types)
         if filename[-3:] == 'csv':
             self.df = pd.read_csv(filename)
-            #print(self.df)
             self.display_all()
         else:
             messagebox.showerror(title="Employee Management",
@@ -137,7 +134,6 @@ class EmployeeManagementGUI(tk.Tk):
 
     def display_all(self):
         """Display the data frame in the staff list treeview"""
-        # TODO does not display with the right row height
         # clear the previous list
         self.staff_list_tv.delete(*self.staff_list_tv.get_children())
         # set up the headings
