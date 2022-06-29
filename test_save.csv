@@ -1,0 +1,51 @@
+,EmployeeID,FirstName,LastName,Position,Salary,Email,HomeAddress,HomePostcode,HomePhone,MobilePhone,StartDate,ReportsTo,EmergencyContactName,EmergencyContactPhone,BirthDate
+0,1000001,Garwin,Branwhite,Statistician,19037,Garwin.Branwhite@manicsupplies.co.uk,"86 Hobbiton Close, Eriador",ER3 9BN,01253 780582,07787 251023,44394,1000007,Delbert Garwell,07865 456541,19852
+1,1000002,Kinny,Culter,Sales Representative,24043,Kinny.Culter@manicsupplies.co.uk,"42 Bree Close, Eriador",ER5 9PA,01256 574809,07865 010455,44718,1000044,Arnuad Scroggs,07787 436605,36374
+2,1000003,Alanna,Eddowis,Senior Developer,26105,Alanna.Eddowis@manicsupplies.co.uk,"144 Osgiliath Road, Gondor",GO4 6CH,01256 668245,07787 428504,44530,1000026,Kassia Jeynes,07865 668780,20674
+3,1000004,Dex,Moir,VP Product Management,31299,Dex.Moir@manicsupplies.co.uk,"70 Edoras Drive, Rohan",RO5 8ZN,01256 603529,07336 162828,44516,1000012,Culley Hassur,07865 403001,26666
+4,1000005,Lars,Rate,Accounting Analyst,27666,Lars.Rate@manicsupplies.co.uk,"94 Moria Drive, Gondor",GO4 9WN,01254 221240,07787 279057,44464,1000036,Shirlene Jeenes,07865 393825,31180
+5,1000006,Berrie,Blower,VP Quality Control,15510,Berrie.Blower@manicsupplies.co.uk,"9 Hobbiton Avenue, Eriador",ER5 7LE,01256 966460,07865 631936,44432,1000004,Beverley Pride,07787 180207,31853
+6,1000007,Nessa,Rimmer,Senior Programmer,78965,Nessa.Rimmer@manicsupplies.co.uk,"203 Edoras Drive, Eriador",ER3 6DL,01256 014544,07336 508173,44471,1000005,Stacee Ible,07787 923857,36077
+7,1000008,Kean,Swinden,Information Systems Manager,31335,Kean.Swinden@manicsupplies.co.uk,"100 Minas Tirith Close, Eriador",ER1 6AQ,01256 470601,07865 352236,44436,1000004,Jeniece Angus,07787 554159,24028
+8,1000009,Kirsteni,Burbudge,Business Systems Development Analyst,67372,Kirsteni.Burbudge@manicsupplies.co.uk,"145 Edoras Close, Eriador",ER1 7NA,01256 709348,07865 299783,44561,1000020,Doretta Noni,07787 365960,37616
+9,1000010,Donnie,Ollin,Accountant,37807,Donnie.Ollin@manicsupplies.co.uk,"198 Edoras Close, Rohan",RO5 9GZ,01254 342801,07787 974776,44537,1000049,Jefferey Bainbrigge,07865 942977,23391
+10,1000011,Reynolds,Layfield,Librarian,41447,Reynolds.Layfield@manicsupplies.co.uk,"194 Dale Place, Eriador",ER3 9SC,01256 748497,07787 805538,44418,1000024,Trevar Edinborough,07865 340988,24384
+11,1000012,Sigfried,Vigus,Quality Control Specialist,20025,Sigfried.Vigus@manicsupplies.co.uk,"43 Minas Tirith Close, Eriador",ER2 8LT,01254 309935,07787 486487,44593,1000019,Joy Moxstead,07787 137459,27333
+12,1000013,Hayward,Pelman,VP Accounting,43517,Hayward.Pelman@manicsupplies.co.uk,"13 Weathertop Road, Gondor",GO3 9TS,01254 196235,07787 590149,44687,1000043,Mil Cossey,07787 867390,26409
+13,1000014,Holly,Andreia,Civil Engineer,15614,Holly.Andreia@manicsupplies.co.uk,"250 Moria Drive, Eriador",ER5 6BG,01253 924711,07336 857327,44430,1000021,Wendel Bellord,07336 166524,23176
+14,1000015,Orsola,Pickavance,Financial Analyst,51875,Orsola.Pickavance@manicsupplies.co.uk,"118 Helms Deep Place, Rohan",RO5 9AQ,01253 461711,07865 350326,44448,1000003,Everett Shawcross,07787 714588,28767
+15,1000016,Maurise,Bourgourd,Business Systems Development Analyst,31761,Maurise.Bourgourd@manicsupplies.co.uk,"120 Minas Tirith Avenue, Eriador",ER2 9SR,01254 384946,07865 024993,44719,1000001,Merci Hallahan,07787 091627,32963
+16,1000017,Ashien,Sked,Account Executive,32421,Ashien.Sked@manicsupplies.co.uk,"205 Dale Close, Eriador",ER5 7MQ,01254 670646,07865 979980,44488,1000040,Edan Echallier,07336 318024,37483
+17,1000018,Leisha,Castillo,Senior Engineer,21841,Leisha.Castillo@manicsupplies.co.uk,"207 Rivendell Place, Gondor",GO5 8ON,01253 553190,07865 769961,44672,1000012,Thurston Trappe,07865 882427,18330
+18,1000019,Dallas,Circuit,Professor,59015,Dallas.Circuit@manicsupplies.co.uk,"47 Osgiliath Avenue, Gondor",GO3 6QA,01254 585659,07865 141618,44717,1000040,Zelig Jakolevitch,07787 864601,36627
+19,1000020,Mathew,Yurtsev,Dental Hygienist,58612,Mathew.Yurtsev@manicsupplies.co.uk,"38 Erebor Place, Rohan",RO1 8RT,01253 419551,07865 581753,44618,1000005,Rodolph Elsom,07787 832094,29055
+20,1000021,Aaren,Cadden,Human Resources Manager,65247,Aaren.Cadden@manicsupplies.co.uk,"24 Osgiliath Road, Gondor",GO2 8RO,01253 982517,07336 753178,44711,1000042,Selia Weinmann,07865 169329,24256
+21,1000022,Alvan,Haglington,Senior Developer,54663,Alvan.Haglington@manicsupplies.co.uk,"51 Hobbiton Drive, Rohan",RO1 9IO,01254 751088,07865 946613,44628,1000018,Georas Muirhead,07336 377906,32268
+22,1000023,Myriam,Burkert,Database Administrator,72950,Myriam.Burkert@manicsupplies.co.uk,"44 Minas Tirith Drive, Eriador",ER1 8CE,01253 800280,07787 732689,44465,1000032,Fallon Frankish,07336 828967,35909
+23,1000024,Killian,Winterson,Cost Accountant,51299,Killian.Winterson@manicsupplies.co.uk,"133 Helms Deep Drive, Eriador",ER4 9KE,01254 309226,07336 245467,44531,1000030,Damiano Lockyear,07787 018123,30632
+24,1000025,Effie,Gillebride,Financial Advisor,64885,Effie.Gillebride@manicsupplies.co.uk,"120 Bree Place, Eriador",ER2 9CV,01253 466910,07336 619788,44473,1000032,Rolfe Woodnutt,07865 482804,25118
+25,1000026,Birgit,Loeber,Staff Scientist,39393,Birgit.Loeber@manicsupplies.co.uk,"171 Mordor Drive, Gondor",GO5 6OY,01253 160140,07336 306478,44523,1000050,Twyla Duchasteau,07787 103735,24248
+26,1000027,Cece,Shivlin,Account Executive,42506,Cece.Shivlin@manicsupplies.co.uk,"68 Edoras Drive, Gondor",GO4 8TT,01254 311199,07336 996826,44657,1000017,Camala Dixson,07336 895263,21863
+27,1000028,Janie,Friedank,Geologist,51998,Janie.Friedank@manicsupplies.co.uk,"34 Mordor Close, Eriador",ER1 9OT,01256 166536,07787 043436,44581,1000009,Marsiella Tarver,07336 624794,27402
+28,1000029,Juanita,Challoner,Pharmacist,45305,Juanita.Challoner@manicsupplies.co.uk,"9 Moria Drive, Rohan",RO3 7QM,01256 288329,07787 059669,44508,1000005,Becka Bloxland,07865 328557,27607
+29,1000030,Thayne,Tuminini,VP Marketing,23875,Thayne.Tuminini@manicsupplies.co.uk,"204 Helms Deep Close, Rohan",RO3 8TI,01254 082233,07336 671168,44594,1000020,Alaric Maleney,07865 237722,19938
+30,1000031,Cindie,Leivesley,Legal Assistant,42080,Cindie.Leivesley@manicsupplies.co.uk,"198 Moria Avenue, Rohan",RO1 9GC,01254 187287,07787 142296,44576,1000009,Gael Hewertson,07865 276731,30841
+31,1000032,Ernst,Bosket,Registered Nurse,38087,Ernst.Bosket@manicsupplies.co.uk,"133 Bree Drive, Gondor",GO1 8MN,01256 725163,07336 968478,44415,1000039,Shelagh Durston,07336 430964,24095
+32,1000033,Jan,Picken,Marketing Assistant,79319,Jan.Picken@manicsupplies.co.uk,"4 Weathertop Road, Gondor",GO3 7VP,01253 864610,07865 653209,44455,1000032,Guenna Debrick,07336 513653,24141
+33,1000034,Adriena,Chessel,Systems Analyst,64644,Adriena.Chessel@manicsupplies.co.uk,"226 Mordor Road, Eriador",ER5 8MU,01254 565815,07787 184172,44583,1000022,Avie Ferrini,07336 757367,28354
+34,1000035,Jerald,Diehn,Accountant,20512,Jerald.Diehn@manicsupplies.co.uk,"181 Moria Place, Rohan",RO2 7HN,01254 965720,07865 116821,44569,1000029,Camila Kalkhoven,07865 878629,24188
+35,1000036,Nerita,Habbergham,VP Product Management,18861,Nerita.Habbergham@manicsupplies.co.uk,"136 Bree Close, Eriador",ER3 7AJ,01254 766001,07336 402236,44555,1000016,Marya Caraher,07865 458707,35360
+36,1000037,Sara-ann,Sidey,Database Administrator,47348,Sara-ann.Sidey@manicsupplies.co.uk,"92 Hobbiton Place, Eriador",ER2 7KX,01253 029223,07787 487292,44385,1000006,Alaric Trueman,07865 891661,26070
+37,1000038,Odetta,Gorbell,General Manager,20993,Odetta.Gorbell@manicsupplies.co.uk,"9 Hobbiton Road, Eriador",ER5 6VF,01253 350137,07336 867744,44662,1000037,Michaeline Sein,07787 120023,36617
+38,1000039,Garry,Absolom,Mechanical Systems Engineer,29411,Garry.Absolom@manicsupplies.co.uk,"179 Moria Drive, Gondor",GO3 6AU,01254 896311,07787 837385,44615,1000016,Holly Baroux,07865 149530,19752
+39,1000040,Elvira,Glantz,Accounting Assistant,19902,Elvira.Glantz@manicsupplies.co.uk,"68 Helms Deep Close, Gondor",GO5 6OA,01254 944004,07787 340717,44715,1000003,Tyler Jurczik,07787 458431,19957
+40,1000041,Easter,Cubbin,Senior Sales Associate,49548,Easter.Cubbin@manicsupplies.co.uk,"38 Hobbiton Place, Eriador",ER5 6GM,01256 849766,07865 093220,44600,1000024,Marijn Baldetti,07787 025861,26810
+41,1000042,Brade,McMichael,Web Designer,67485,Brade.McMichael@manicsupplies.co.uk,"200 Edoras Close, Gondor",GO4 6WP,01254 367787,07865 567816,44490,1000023,Weidar Dyhouse,07336 139853,21387
+42,1000043,Sally,Yosifov,Human Resources Assistant,24766,Sally.Yosifov@manicsupplies.co.uk,"213 Edoras Place, Gondor",GO5 9GK,01254 920594,07787 635607,44446,1000043,Drusy Cocke,07865 599976,24561
+43,1000044,Hymie,Stoffler,Account Coordinator,38186,Hymie.Stoffler@manicsupplies.co.uk,"27 Helms Deep Avenue, Eriador",ER4 7AR,01256 419882,07336 974219,44643,1000038,Goldarina Ghilks,07865 269608,28457
+44,1000045,Laina,Unger,Financial Advisor,27824,Laina.Unger@manicsupplies.co.uk,"71 Minas Tirith Avenue, Rohan",RO4 6CI,01254 094064,07865 719798,44677,1000001,Bryn MacKellar,07336 082229,26816
+45,1000046,Cordula,Gwalter,Recruiting Manager,34654,Cordula.Gwalter@manicsupplies.co.uk,"114 Dale Road, Rohan",RO5 6DS,01254 983277,07336 482596,44366,1000037,Myrah Martell,07865 705045,28501
+46,1000047,Kirbie,Monshall,Help Desk Technician,28111,Kirbie.Monshall@manicsupplies.co.uk,"199 Hobbiton Close, Eriador",ER2 6NW,01253 217623,07336 587150,44473,1000009,Johnathon Biddle,07865 665236,37303
+47,1000048,Darcee,Kelland,Sales Representative,24603,Darcee.Kelland@manicsupplies.co.uk,"3 Rivendell Road, Rohan",RO4 9PE,01253 921767,07865 729653,44719,1000026,Pincas Laurence,07865 217808,20042
+48,1000049,Marni,Minguet,Teacher,31350,Marni.Minguet@manicsupplies.co.uk,"158 Moria Place, Eriador",ER5 7QU,01254 345279,07865 908304,44464,1000030,Milo Beste,07865 728253,20105
+49,1000050,Noemi,Fermer,Pharmacist,38898,Noemi.Fermer@manicsupplies.co.uk,"34 Hobbiton Drive, Rohan",RO4 7VF,01254 286411,07865 628694,44649,1000021,Jobie Carlon,07336 247225,19072

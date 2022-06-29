@@ -3,10 +3,32 @@ import pandas as pd
 from tkinter import ttk, VERTICAL, RIGHT, Y, HORIZONTAL, BOTTOM, X, filedialog, messagebox, LEFT
 
 
+class FileHandler:
+    """class to handle file operations for the gui, so file operations can be unit tested"""
+    def load_csv_file(self, filename):
+        """load a csv file and return a dataframe"""
+        return pd.read_csv(filename)
+
+    def load_xlsx_file(self, filename):
+        """load a xlsx file and return a dataframe"""
+        return pd.read_excel(filename)
+
+    def save_xlsx_file(self, filename, df):
+        """save dataframe to xlsx file"""
+        writer = pd.ExcelWriter(filename)
+        df.to_excel(writer, index=False)
+        writer.save()
+
+    def save_csv_file(self, filename, df):
+        """save dataframe to csv file"""
+        df.to_csv(filename, index=False, encoding='utf-8')
+
+
 class EmployeeManagementGUI(tk.Tk):
     # constructor
-    def __init__(self):
+    def __init__(self, file_handler):
         super().__init__()
+        self.FileHandler = file_handler
 
         # Other variables
         font_ems = ('Helvetica', 12)
@@ -21,7 +43,7 @@ class EmployeeManagementGUI(tk.Tk):
         # space for rest of emp data
         #
         self.df = pd.DataFrame()
-        self.file_types = (('Comma Separated Values', '*.csv'), ('All Files', '*.*'))
+        self.file_types = (('Excel File', '*.xlsx'), ('Comma Separated Values', '*.csv'), ('All Files', '*.*'))
 
         # Window Setup
         self.title('Employee Management System')  # TODO can i add employee id here?
@@ -125,12 +147,25 @@ class EmployeeManagementGUI(tk.Tk):
     def load_file(self):
         """Load staff data from a csv file selected by the user"""
         filename = filedialog.askopenfilename(title="Select A File", filetype=self.file_types)
+
         if filename[-3:] == 'csv':
-            self.df = pd.read_csv(filename)
-            self.display_all()
+            try:
+                self.df = self.FileHandler.load_csv_file(filename)
+            except UnicodeDecodeError:
+                messagebox.showerror(title="Employee Management",
+                                     message="File format not recognised")
+        elif filename[-4:] == "xlsx":
+            try:
+                self.df = self.FileHandler.load_xlsx_file(filename)
+            except UnicodeDecodeError:
+                messagebox.showerror(title="Employee Management",
+                                     message="File format not recognised")
+
         else:
             messagebox.showerror(title="Employee Management",
                                  message="File type not supported")
+
+        self.display_all()
 
     def display_all(self):
         """Display the data frame in the staff list treeview"""
@@ -176,5 +211,6 @@ class EmployeeManagementGUI(tk.Tk):
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    app = EmployeeManagementGUI()
+    fh = FileHandler()
+    app = EmployeeManagementGUI(fh)
     app.mainloop()
