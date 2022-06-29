@@ -43,6 +43,8 @@ class EmployeeManagementGUI(tk.Tk):
         self.last_name = tk.StringVar()
         self.position = tk.StringVar()
         self.salary = tk.StringVar()
+        self.start_date = tk.StringVar()
+        self.reports_to = tk.StringVar()
         #
         # space for rest of emp data
         #
@@ -58,6 +60,7 @@ class EmployeeManagementGUI(tk.Tk):
         main_frame = tk.Frame(self)
         main_frame.grid(row=0, column=0, columnspan=4)
 
+        # ROW 1
         # First Name
         lbl_first_name = tk.Label(main_frame, text='First Name', font=font_ems)
         lbl_first_name.grid(row=0, column=0, padx=10, pady=10, sticky='w')
@@ -70,6 +73,7 @@ class EmployeeManagementGUI(tk.Tk):
         self.text_last_name = tk.Entry(main_frame, textvariable=self.last_name, font=font_ems)
         self.text_last_name.grid(row=0, column=3, padx=10, pady=10, sticky='w')
 
+        # ROW 2
         # Position
         lbl_position = tk.Label(main_frame, text='Position', font=font_ems)
         lbl_position.grid(row=1, column=0, padx=10, pady=10, sticky='w')
@@ -82,13 +86,24 @@ class EmployeeManagementGUI(tk.Tk):
         self.text_salary = tk.Entry(main_frame, textvariable=self.salary, font=font_ems)
         self.text_salary.grid(row=1, column=3, padx=10, pady=10, sticky='w')
 
-        # TODO Email
-        # TODO HomeAddress
+        # ROW 3
+        # StartDate
+        lbl_start_date = tk.Label(main_frame, text='Start Date', font=font_ems)
+        lbl_start_date.grid(row=2, column=0, padx=10, pady=10, sticky='w')
+        self.text_start_date = tk.Entry(main_frame, textvariable=self.start_date, font=font_ems)
+        self.text_start_date.grid(row=2, column=1, padx=10, pady=10, sticky='w')
+
+        # ReportsTo
+        lbl_reports_to = tk.Label(main_frame, text='Reports To', font=font_ems)
+        lbl_reports_to.grid(row=2, column=2, padx=10, pady=10, sticky='w')
+        self.text_reports_to = tk.Entry(main_frame, textvariable=self.reports_to, font=font_ems)
+        self.text_reports_to.grid(row=2, column=3, padx=10, pady=10, sticky='w')
+
+        # TODO Email (Long)
+        # TODO HomeAddress (long)
         # TODO HomePostcode
         # TODO HomePhone
         # TODO MobilePhone
-        # TODO StartDate
-        # TODO ReportsTo
         # TODO EmergencyContactName
         # TODO EmergencyContactPhone
         # TODO BirthDate
@@ -198,7 +213,6 @@ class EmployeeManagementGUI(tk.Tk):
         else:
             messagebox.showerror(title='Employee Management System',
                                  message='Cannot save file')
-
 
     # TODO Function to add an employee
     def add_record(self):
