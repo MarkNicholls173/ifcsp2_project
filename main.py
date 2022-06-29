@@ -3,7 +3,7 @@ from tkinter.filedialog import asksaveasfile
 
 import pandas as pd
 
-from tkinter import ttk, VERTICAL, RIGHT, Y, HORIZONTAL, BOTTOM, X, filedialog, messagebox, LEFT, W
+from tkinter import ttk, VERTICAL, RIGHT, Y, HORIZONTAL, BOTTOM, X, filedialog, messagebox, LEFT, W, E, EW
 
 from pandas._config.config import OptionError
 
@@ -117,55 +117,59 @@ class EmployeeManagementGUI(tk.Tk):
         self.text_email.grid(row=4, column=1, columnspan=3, padx=10, pady=10, sticky=W)
 
         # ROW 5
-        # HomeAddress (long)
-        lbl_home_address = tk.Label(main_frame, text='Home Address', font=font_ems)
-        lbl_home_address.grid(row=5, column=0, pady=10, padx=10, sticky=W)
-        self.text_home_address = tk.Entry(main_frame, textvariable=self.home_address, width=67, font=font_ems)
-        self.text_home_address.grid(row=5, column=1, columnspan=3, padx=10, pady=10, sticky=W)
+        # Separator
+        ttk.Separator(main_frame, orient=HORIZONTAL).grid(row=5, column=0, columnspan=4, sticky=EW, padx=10)
 
         # ROW 6
+        # HomeAddress (long)
+        lbl_home_address = tk.Label(main_frame, text='Home Address', font=font_ems)
+        lbl_home_address.grid(row=6, column=0, pady=10, padx=10, sticky=W)
+        self.text_home_address = tk.Entry(main_frame, textvariable=self.home_address, width=67, font=font_ems)
+        self.text_home_address.grid(row=6, column=1, columnspan=3, padx=10, pady=10, sticky=W)
+
+        # ROW 7
         # HomePostcode
         lbl_home_postcode = tk.Label(main_frame, text='Home Postcode', font=font_ems)
-        lbl_home_postcode.grid(row=6, column=0, padx=10, pady=10, sticky=W)
+        lbl_home_postcode.grid(row=7, column=0, padx=10, pady=10, sticky=W)
         self.text_home_postcode = tk.Entry(main_frame, textvariable=self.home_postcode, font=font_ems)
-        self.text_home_postcode.grid(row=6, column=1, padx=10, pady=10, sticky=W)
+        self.text_home_postcode.grid(row=7, column=1, padx=10, pady=10, sticky=W)
 
         # HomePhone
         lbl_home_phone = tk.Label(main_frame, text='Home Phone', font=font_ems)
-        lbl_home_phone.grid(row=6, column=2, padx=10, pady=10, sticky=W)
+        lbl_home_phone.grid(row=7, column=2, padx=10, pady=10, sticky=W)
         self.text_home_phone = tk.Entry(main_frame, textvariable=self.home_phone, font=font_ems)
-        self.text_home_phone.grid(row=6, column=3, padx=10, pady=10, sticky=W)
+        self.text_home_phone.grid(row=7, column=3, padx=10, pady=10, sticky=W)
 
-        # ROW 7
+        # ROW 8
         # Mobile Phone
         lbl_mobile_phone = tk.Label(main_frame, text='Mobile Phone', font=font_ems)
-        lbl_mobile_phone.grid(row=7, column=0, padx=10, pady=10, sticky=W)
+        lbl_mobile_phone.grid(row=8, column=0, padx=10, pady=10, sticky=W)
         self.text_mobile_phone = tk.Entry(main_frame, textvariable=self.mobile_phone, font=font_ems)
-        self.text_mobile_phone.grid(row=7, column=1, padx=10, pady=10, sticky=W)
+        self.text_mobile_phone.grid(row=8, column=1, padx=10, pady=10, sticky=W)
 
         # Birth Date
         lbl_birth_date = tk.Label(main_frame, text='Birth Date', font=font_ems)
-        lbl_birth_date.grid(row=7, column=2, padx=10, pady=10, sticky=W)
+        lbl_birth_date.grid(row=8, column=2, padx=10, pady=10, sticky=W)
         self.text_birth_date = tk.Entry(main_frame, textvariable=self.birth_date, font=font_ems)
-        self.text_birth_date.grid(row=7, column=3, padx=10, pady=10, sticky=W)
+        self.text_birth_date.grid(row=8, column=3, padx=10, pady=10, sticky=W)
 
-        # ROW 8
+        # ROW 9
         # Emergency Contact Name
         lbl_emergency_contact_name = tk.Label(main_frame, text='Emergency Contact Name', font=font_ems)
-        lbl_emergency_contact_name.grid(row=8, column=0, padx=10, pady=10, sticky=W)
+        lbl_emergency_contact_name.grid(row=9, column=0, padx=10, pady=10, sticky=W)
         self.text_emergency_contact_name = tk.Entry(main_frame, textvariable=self.emergency_contact_name, font=font_ems)
-        self.text_emergency_contact_name.grid(row=8, column=1, padx=10, pady=10, sticky=W)
+        self.text_emergency_contact_name.grid(row=9, column=1, padx=10, pady=10, sticky=W)
 
         # Emergency Contact Phone
         lbl_emergency_contact_phone = tk.Label(main_frame, text='Emergency Contact Phone', font=font_ems)
-        lbl_emergency_contact_phone.grid(row=8, column=2, padx=10, pady=10, sticky=W)
+        lbl_emergency_contact_phone.grid(row=9, column=2, padx=10, pady=10, sticky=W)
         self.text_emergency_contact_phone = tk.Entry(main_frame, textvariable=self.emergency_contact_phone, font=font_ems)
-        self.text_emergency_contact_phone.grid(row=8, column=3, padx=10, pady=10, sticky=W)
+        self.text_emergency_contact_phone.grid(row=9, column=3, padx=10, pady=10, sticky=W)
 
-        # ROW 9
+        # ROW 10
         # Button Frame
         btn_frame = tk.Frame(main_frame)
-        btn_frame.grid(row=9, column=0, columnspan=4, padx=10, pady=10, sticky=W)
+        btn_frame.grid(row=10, column=0, columnspan=4, padx=10, pady=10, sticky=W)
 
         # TODO Load Data Button
         tk.Button(btn_frame, command=self.load_file, text='Load Data', font=font_ems_bold,
