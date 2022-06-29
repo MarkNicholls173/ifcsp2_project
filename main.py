@@ -1,6 +1,10 @@
 import tkinter as tk
+from tkinter.filedialog import asksaveasfile
+
 import pandas as pd
+
 from tkinter import ttk, VERTICAL, RIGHT, Y, HORIZONTAL, BOTTOM, X, filedialog, messagebox, LEFT
+from pandas._config.config import OptionError
 
 
 class FileHandler:
@@ -157,7 +161,7 @@ class EmployeeManagementGUI(tk.Tk):
         elif filename[-4:] == "xlsx":
             try:
                 self.df = self.FileHandler.load_xlsx_file(filename)
-            except UnicodeDecodeError:
+            except OptionError:
                 messagebox.showerror(title="Employee Management",
                                      message="File format not recognised")
 
@@ -184,10 +188,17 @@ class EmployeeManagementGUI(tk.Tk):
         # display treeview in the frame
         self.staff_list_tv.pack(side=LEFT)
 
-    # TODO Function to save data
     def save_file(self):
         """Function to save staff list data to a file selected by the user"""
-        pass
+        filename = asksaveasfile(filetypes=self.file_types, defaultextension=self.file_types)
+        if filename.name[-3:] == 'csv':
+            self.FileHandler.save_csv_file(filename.name, self.df)
+        elif filename.name[-4:] == 'xlsx':
+            self.FileHandler.save_xlsx_file(filename.name, self.df)
+        else:
+            messagebox.showerror(title='Employee Management System',
+                                 message='Cannot save file')
+
 
     # TODO Function to add an employee
     def add_record(self):
