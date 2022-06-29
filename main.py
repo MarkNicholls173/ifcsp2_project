@@ -1,11 +1,8 @@
 import tkinter as tk
-from tkinter.filedialog import asksaveasfile
-
 import pandas as pd
-
-from tkinter import ttk, VERTICAL, RIGHT, Y, HORIZONTAL, BOTTOM, X, filedialog, messagebox, LEFT, W, E, EW
-
-from pandas._config.config import OptionError
+from tkinter.filedialog import asksaveasfile
+from tkinter import ttk, VERTICAL, RIGHT, Y, HORIZONTAL, BOTTOM, X, filedialog, messagebox, LEFT, W, EW, END
+from pandas.errors import OptionError
 
 
 class FileHandler:
@@ -171,11 +168,11 @@ class EmployeeManagementGUI(tk.Tk):
         btn_frame = tk.Frame(main_frame)
         btn_frame.grid(row=10, column=0, columnspan=4, padx=10, pady=10, sticky=W)
 
-        # TODO Load Data Button
+        # Load Data Button
         tk.Button(btn_frame, command=self.load_file, text='Load Data', font=font_ems_bold,
                   width=15).grid(row=0, column=0)
 
-        # TODO Save Data Button
+        # Save Data Button
         tk.Button(btn_frame, command=self.save_file, text='Save Data', font=font_ems_bold,
                   width=15).grid(row=0, column=1, padx=5)
 
@@ -276,7 +273,36 @@ class EmployeeManagementGUI(tk.Tk):
     # TODO Function to add an employee
     def add_record(self):
         """Function to add a new employee"""
-        pass
+        if self.text_first_name.get() == '' or self.text_last_name.get() == '' \
+                or self.text_position.get() == '' or self.text_salary.get() == '' \
+                or self.text_start_date.get() == '' or self.text_reports_to.get() == '' \
+                or self.text_email.get() == '' or self.text_home_address.get() == '' \
+                or self.text_home_postcode.get() == '' or self.text_home_phone.get() == '' \
+                or self.text_mobile_phone.get() == '' or self.text_birth_date.get() == '' \
+                or self.text_emergency_contact_name.get() == '' or self.text_emergency_contact_phone.get() == '':
+            messagebox.showerror(title='Employee Management System',
+                                 message='Please complete all fields')
+        else:
+            employee_id = self.df['EmployeeID'].max() + 1
+            new_record = {'EmployeeID': employee_id,
+                          'FirstName': self.text_first_name.get(),
+                          'LastName': self.text_last_name.get(),
+                          'Position': self.text_position.get(),
+                          'Salary': self.text_salary.get(),
+                          'Email': self.text_email.get(),
+                          'HomeAddress': self.text_home_address.get(),
+                          'HomePostcode': self.text_home_postcode.get(),
+                          'HomePhone': self.text_home_phone.get(),
+                          'MobilePhone': self.text_mobile_phone.get(),
+                          'StartDate': self.text_start_date.get(),
+                          'ReportsTo': self.text_reports_to.get(),
+                          'EmergencyContactName': self.text_emergency_contact_name.get(),
+                          'EmergencyContactPhone': self.text_emergency_contact_phone.get(),
+                          'BirthDate': self.text_birth_date.get()}
+            self.df = self.df.append(new_record, ignore_index=True)
+            self.display_all()
+            self.clear_boxes()
+            messagebox.showinfo(message='record added')
 
     # TODO Function to delete an employee record
     def delete_record(self):
@@ -287,10 +313,22 @@ class EmployeeManagementGUI(tk.Tk):
     def save_changes(self):
         """Function to save changes to the current record"""
 
-    # TODO function to clear boxes
     def clear_boxes(self):
         """function to clear all the boxes in the form"""
-        pass
+        self.text_first_name.delete(0, END)
+        self.text_last_name.delete(0, END)
+        self.text_position.delete(0, END)
+        self.text_salary.delete(0, END)
+        self.text_start_date.delete(0, END)
+        self.text_reports_to.delete(0, END)
+        self.text_email.delete(0, END)
+        self.text_home_address.delete(0, END)
+        self.text_home_postcode.delete(0, END)
+        self.text_home_phone.delete(0, END)
+        self.text_mobile_phone.delete(0, END)
+        self.text_birth_date.delete(0, END)
+        self.text_emergency_contact_name.delete(0, END)
+        self.text_emergency_contact_phone.delete(0, END)
 
 
 # Press the green button in the gutter to run the script.
