@@ -1,12 +1,12 @@
 import unittest
 import pandas as pd
-from main import EmployeeManagementGUI, FileHandler
+from main import EmployeeManagementGUI, EmployeeData
 
 
 class TestEmployeeManagementGUI(unittest.TestCase):
 
     def setUp(self):
-        fh = FileHandler()
+        fh = EmployeeData()
         self.app = EmployeeManagementGUI(fh)
 
     def tearDown(self):

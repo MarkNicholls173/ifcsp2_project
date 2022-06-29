@@ -5,32 +5,56 @@ from tkinter import ttk, VERTICAL, RIGHT, Y, HORIZONTAL, BOTTOM, X, filedialog, 
 from pandas.errors import OptionError
 
 
-class FileHandler:
-    """class to handle file operations for the gui, so file operations can be unit tested"""
-    def load_csv_file(self, filename):
-        """load a csv file and return a dataframe"""
-        return pd.read_csv(filename)
+class EmployeeData:
+    """class contain the employee data and methods to manipulate the data"""
+    def __init__(self):
+        self.df = pd.DataFrame()
 
-    def load_xlsx_file(self, filename):
-        """load a xlsx file and return a dataframe"""
-        return pd.read_excel(filename)
+    def load_file(self, filename):
+        """load data from a csv or xlsx file and store in df"""
+        if filename[-3:] == 'csv':
+            # try:
+            self.df = pd.read_csv(filename)
+            # except UnicodeDecodeError:
+            #   what if error
 
-    def save_xlsx_file(self, filename, df):
-        """save dataframe to xlsx file"""
-        writer = pd.ExcelWriter(filename)
-        df.to_excel(writer, index=False)
-        writer.save()
+        elif filename[-4:] == "xlsx":
+            # try:
+            self.df = pd.read_excel(filename)
+            # except OptionError:
+            #     messagebox.showerror(title="Employee Management",
+            #                          message="File format not recognised")
 
-    def save_csv_file(self, filename, df):
-        """save dataframe to csv file"""
-        df.to_csv(filename, index=False, encoding='utf-8')
+        else:
+            pass
+            # messagebox.showerror(title="Employee Management",
+            #                      message="File type not supported")
+
+    def save_file(self, filename):
+        """save data to a csv or xlsx file"""
+        if filename[-3:] == 'csv':
+            self.df.to_csv(filename, index=False, encoding='utf-8')
+        elif filename[-4:] == 'xlsx':
+            writer = pd.ExcelWriter(filename)
+            self.df.to_excel(writer, index=False)
+            writer.save()
+        else:
+            #  do something if file type not supported
+            pass
+
+    def get_employee(self, employee_id):
+        return self.df.loc[self.df['EmployeeID'] == employee_id]
+
+    # TODO function get_new_employee_id
+    # TODO function edit_employee
+    # TODO function delete_employee
 
 
 class EmployeeManagementGUI(tk.Tk):
     # constructor
-    def __init__(self, file_handler):
+    def __init__(self):
         super().__init__()
-        self.FileHandler = file_handler
+        self.employee_data = EmployeeData()
 
         # Define Form Variables
         self.first_name = tk.StringVar()
@@ -47,7 +71,6 @@ class EmployeeManagementGUI(tk.Tk):
         self.birth_date = tk.StringVar()
         self.emergency_contact_name = tk.StringVar()
         self.emergency_contact_phone = tk.StringVar()
-
 
         # Define Dataframe
         self.df = pd.DataFrame()
@@ -222,53 +245,38 @@ class EmployeeManagementGUI(tk.Tk):
     def load_file(self):
         """Load staff data from a csv file selected by the user"""
         filename = filedialog.askopenfilename(title="Select A File", filetype=self.file_types)
-
-        if filename[-3:] == 'csv':
-            try:
-                self.df = self.FileHandler.load_csv_file(filename)
-            except UnicodeDecodeError:
-                messagebox.showerror(title="Employee Management",
-                                     message="File format not recognised")
-        elif filename[-4:] == "xlsx":
-            try:
-                self.df = self.FileHandler.load_xlsx_file(filename)
-            except OptionError:
-                messagebox.showerror(title="Employee Management",
-                                     message="File format not recognised")
-
+        if filename[-3:] == 'csv' or filename[-4:] == "xlsx":
+            self.employee_data.load_file(filename)
+            self.display_all()
         else:
             messagebox.showerror(title="Employee Management",
                                  message="File type not supported")
 
-        self.display_all()
+    def save_file(self):
+        """Function to save staff list data to a file selected by the user"""
+        filename = asksaveasfile(filetypes=self.file_types, defaultextension=self.file_types)
+        if filename.name[-3:] == 'csv' or filename.name[-4:] == 'xlsx':
+            self.employee_data.save_file(filename.name)
+        else:
+            messagebox.showerror(title='Employee Management System',
+                                 message='Cannot save file')
 
     def display_all(self):
         """Display the data frame in the staff list treeview"""
         # clear the previous list
         self.staff_list_tv.delete(*self.staff_list_tv.get_children())
         # set up the headings
-        self.staff_list_tv['column'] = list(self.df.columns)
+        self.staff_list_tv['column'] = list(self.employee_data.df.columns)
         self.staff_list_tv['show'] = 'headings'
         for column in self.staff_list_tv['columns']:
             self.staff_list_tv.heading(column, text=column)
         # convert data frame to list of lists as treeview does not work with dataframes
-        df_rows = self.df.to_numpy().tolist()
+        df_rows = self.employee_data.df.to_numpy().tolist()
         # insert data in the treeview row by row
         for row in df_rows:
             self.staff_list_tv.insert('', 'end', values=row)
         # display treeview in the frame
         self.staff_list_tv.pack(side=LEFT)
-
-    def save_file(self):
-        """Function to save staff list data to a file selected by the user"""
-        filename = asksaveasfile(filetypes=self.file_types, defaultextension=self.file_types)
-        if filename.name[-3:] == 'csv':
-            self.FileHandler.save_csv_file(filename.name, self.df)
-        elif filename.name[-4:] == 'xlsx':
-            self.FileHandler.save_xlsx_file(filename.name, self.df)
-        else:
-            messagebox.showerror(title='Employee Management System',
-                                 message='Cannot save file')
 
     # TODO Function to add an employee
     def add_record(self):
@@ -333,6 +341,5 @@ class EmployeeManagementGUI(tk.Tk):
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    fh = FileHandler()
-    app = EmployeeManagementGUI(fh)
+    app = EmployeeManagementGUI()
     app.mainloop()
