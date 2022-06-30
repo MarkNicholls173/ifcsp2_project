@@ -6,9 +6,12 @@ from pandas.errors import OptionError
 
 
 class EmployeeData:
-    """class contain the employee data and methods to manipulate the data"""
+    """class to contain the employee data and methods to manipulate the data"""
     def __init__(self):
-        self.df = pd.DataFrame()
+        col_names = ['EmployeeID', 'FirstName', 'LastName', 'Position', 'Salary', 'Email', 'HomeAddress',
+                     'HomePostcode', 'HomePhone', 'MobilePhone', 'StartDate', 'ReportsTo', 'EmergencyContactName',
+                     'EmergencyContactPhone', 'BirthDate']
+        self.df = pd.DataFrame(columns=col_names)
 
     def load_file(self, filename):
         """load data from a csv or xlsx file and store in df"""
@@ -45,9 +48,36 @@ class EmployeeData:
     def get_employee(self, employee_id):
         return self.df.loc[self.df['EmployeeID'] == employee_id]
 
-    # TODO function get_new_employee_id
-    # TODO function edit_employee
+    def get_new_employee_id(self):
+        """return the next available employee id number or 1000000 if no employees"""
+        # if df is empty set first employee number
+        if self.df.empty:
+            return 1000001
+        else:
+            return self.df['EmployeeID'].max() + 1
+
+    def add_employee(self, new_record):
+        """add employee using the next available employee number"""
+        new_record['EmployeeID'] = self.get_new_employee_id()
+        self.df = self.df.append(new_record, ignore_index=True)
+
+    def edit_employee(self, updated_record):
+        """update employee details for the given employee id"""
+        # get row number
+        row_num = self.df[self.df['EmployeeID'] == updated_record['EmployeeID']].index[0]
+
+        # edit the data
+        for field in updated_record:
+            if updated_record[field] != 'EmployeeID':
+                self.df.at[row_num, field] = updated_record[field]
+
     # TODO function delete_employee
+    def delete_employee(self, employee_id):
+        # get row number
+        row_num = self.df[self.df['EmployeeID'] == employee_id].index[0]
+
+        # delete the row
+        self.df = self.df.drop(row_num)
 
 
 class EmployeeManagementGUI(tk.Tk):
