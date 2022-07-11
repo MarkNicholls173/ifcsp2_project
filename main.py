@@ -71,8 +71,8 @@ class EmployeeData:
             if updated_record[field] != 'EmployeeID':
                 self.df.at[row_num, field] = updated_record[field]
 
-    # TODO function delete_employee
     def delete_employee(self, employee_id):
+        """delete employee with given employee id"""
         # get row number
         row_num = self.df[self.df['EmployeeID'] == employee_id].index[0]
 
@@ -80,6 +80,7 @@ class EmployeeData:
         self.df = self.df.drop(row_num)
 
 
+# TODO refactor class to use methods from EmployeeData class
 class EmployeeManagementGUI(tk.Tk):
     # constructor
     def __init__(self):
@@ -87,6 +88,7 @@ class EmployeeManagementGUI(tk.Tk):
         self.employee_data = EmployeeData()
 
         # Define Form Variables
+        self.employee_id = tk.StringVar()
         self.first_name = tk.StringVar()
         self.last_name = tk.StringVar()
         self.position = tk.StringVar()
@@ -103,7 +105,7 @@ class EmployeeManagementGUI(tk.Tk):
         self.emergency_contact_phone = tk.StringVar()
 
         # Define Dataframe
-        self.df = pd.DataFrame()
+        # no used any more self.df = pd.DataFrame()
 
         # Other variables
         font_ems = ('Helvetica', 12)
@@ -126,7 +128,6 @@ class EmployeeManagementGUI(tk.Tk):
         lbl_first_name.grid(row=0, column=0, padx=10, pady=10, sticky=W)
         self.text_first_name = tk.Entry(main_frame, textvariable=self.first_name, font=font_ems)
         self.text_first_name.grid(row=0, column=1, padx=10, pady=10, sticky=W)
-
         # Last Name
         lbl_last_name = tk.Label(main_frame, text='Last Name', font=font_ems)
         lbl_last_name.grid(row=0, column=2, padx=10, pady=10, sticky=W)
@@ -139,7 +140,6 @@ class EmployeeManagementGUI(tk.Tk):
         lbl_position.grid(row=1, column=0, padx=10, pady=10, sticky=W)
         self.text_position = tk.Entry(main_frame, textvariable=self.position, font=font_ems)
         self.text_position.grid(row=1, column=1, padx=10, pady=10, sticky=W)
-
         # Salary
         lbl_salary = tk.Label(main_frame, text='Salary', font=font_ems)
         lbl_salary.grid(row=1, column=2, padx=10, pady=10, sticky=W)
@@ -152,7 +152,6 @@ class EmployeeManagementGUI(tk.Tk):
         lbl_start_date.grid(row=2, column=0, padx=10, pady=10, sticky=W)
         self.text_start_date = tk.Entry(main_frame, textvariable=self.start_date, font=font_ems)
         self.text_start_date.grid(row=2, column=1, padx=10, pady=10, sticky=W)
-
         # ReportsTo
         lbl_reports_to = tk.Label(main_frame, text='Reports To', font=font_ems)
         lbl_reports_to.grid(row=2, column=2, padx=10, pady=10, sticky=W)
@@ -183,7 +182,6 @@ class EmployeeManagementGUI(tk.Tk):
         lbl_home_postcode.grid(row=7, column=0, padx=10, pady=10, sticky=W)
         self.text_home_postcode = tk.Entry(main_frame, textvariable=self.home_postcode, font=font_ems)
         self.text_home_postcode.grid(row=7, column=1, padx=10, pady=10, sticky=W)
-
         # HomePhone
         lbl_home_phone = tk.Label(main_frame, text='Home Phone', font=font_ems)
         lbl_home_phone.grid(row=7, column=2, padx=10, pady=10, sticky=W)
@@ -196,7 +194,6 @@ class EmployeeManagementGUI(tk.Tk):
         lbl_mobile_phone.grid(row=8, column=0, padx=10, pady=10, sticky=W)
         self.text_mobile_phone = tk.Entry(main_frame, textvariable=self.mobile_phone, font=font_ems)
         self.text_mobile_phone.grid(row=8, column=1, padx=10, pady=10, sticky=W)
-
         # Birth Date
         lbl_birth_date = tk.Label(main_frame, text='Birth Date', font=font_ems)
         lbl_birth_date.grid(row=8, column=2, padx=10, pady=10, sticky=W)
@@ -209,7 +206,6 @@ class EmployeeManagementGUI(tk.Tk):
         lbl_emergency_contact_name.grid(row=9, column=0, padx=10, pady=10, sticky=W)
         self.text_emergency_contact_name = tk.Entry(main_frame, textvariable=self.emergency_contact_name, font=font_ems)
         self.text_emergency_contact_name.grid(row=9, column=1, padx=10, pady=10, sticky=W)
-
         # Emergency Contact Phone
         lbl_emergency_contact_phone = tk.Label(main_frame, text='Emergency Contact Phone', font=font_ems)
         lbl_emergency_contact_phone.grid(row=9, column=2, padx=10, pady=10, sticky=W)
@@ -225,19 +221,19 @@ class EmployeeManagementGUI(tk.Tk):
         tk.Button(btn_frame, command=self.load_file, text='Load Data', font=font_ems_bold,
                   width=15).grid(row=0, column=0)
 
-        # Save Data Button
+        # Data Button
         tk.Button(btn_frame, command=self.save_file, text='Save Data', font=font_ems_bold,
                   width=15).grid(row=0, column=1, padx=5)
 
-        # TODO Add Employee Button
+        # Add Employee Button
         tk.Button(btn_frame, command=self.add_record, text='Add Employee',  font=font_ems_bold,
                   width=15).grid(row=0, column=2, padx=5)
 
-        # TODO Delete Employee Button
+        # Delete Employee Button
         tk.Button(btn_frame, command=self.delete_record, text='Delete Employee',  font=font_ems_bold,
                   width=15).grid(row=0, column=3, padx=5)
 
-        # TODO Save Changes Button
+        # Save Changes Button
         tk.Button(btn_frame, command=self.save_changes, text='Save Changes', font=font_ems_bold,
                   width=15).grid(row=0, column=4)
 
@@ -321,9 +317,7 @@ class EmployeeManagementGUI(tk.Tk):
             messagebox.showerror(title='Employee Management System',
                                  message='Please complete all fields')
         else:
-            employee_id = self.df['EmployeeID'].max() + 1
-            new_record = {'EmployeeID': employee_id,
-                          'FirstName': self.text_first_name.get(),
+            new_record = {'FirstName': self.text_first_name.get(),
                           'LastName': self.text_last_name.get(),
                           'Position': self.text_position.get(),
                           'Salary': self.text_salary.get(),
@@ -337,7 +331,8 @@ class EmployeeManagementGUI(tk.Tk):
                           'EmergencyContactName': self.text_emergency_contact_name.get(),
                           'EmergencyContactPhone': self.text_emergency_contact_phone.get(),
                           'BirthDate': self.text_birth_date.get()}
-            self.df = self.df.append(new_record, ignore_index=True)
+
+            self.employee_data.add_employee(new_record)
             self.display_all()
             self.clear_boxes()
             messagebox.showinfo(message='record added')
