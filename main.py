@@ -49,24 +49,27 @@ class EmployeeData:
         return self.df.loc[self.df['EmployeeID'] == employee_id]
 
     def get_new_employee_id(self):
-        """return the next available employee id number or 1000000 if no employees"""
-        # if df is empty set first employee number
+        """return the next available employee id number or 1000001 if no employees"""
         if self.df.empty:
+            # if df is empty return the first employee number
             return 1000001
         else:
+            # otherwise return one plus the largest employee number
             return self.df['EmployeeID'].max() + 1
 
     def add_employee(self, new_record):
         """add employee using the next available employee number"""
+        # get a new employee number
         new_record['EmployeeID'] = self.get_new_employee_id()
+        # add the new employee to the dataframe
         self.df = self.df.append(new_record, ignore_index=True)
 
     def edit_employee(self, updated_record):
         """update employee details for the given employee id"""
-        # get row number
+        # find dataframe row number for the given employee id
         row_num = self.df[self.df['EmployeeID'] == updated_record['EmployeeID']].index[0]
 
-        # edit the data
+        # update teh dataframe row with the updated record
         for field in updated_record:
             if updated_record[field] != 'EmployeeID':
                 self.df.at[row_num, field] = updated_record[field]
@@ -80,7 +83,6 @@ class EmployeeData:
         self.df = self.df.drop(row_num)
 
 
-# TODO refactor class to use methods from EmployeeData class
 class EmployeeManagementGUI(tk.Tk):
     # constructor
     def __init__(self):
@@ -204,12 +206,14 @@ class EmployeeManagementGUI(tk.Tk):
         # Emergency Contact Name
         lbl_emergency_contact_name = tk.Label(main_frame, text='Emergency Contact Name', font=font_ems)
         lbl_emergency_contact_name.grid(row=9, column=0, padx=10, pady=10, sticky=W)
-        self.text_emergency_contact_name = tk.Entry(main_frame, textvariable=self.emergency_contact_name, font=font_ems)
+        self.text_emergency_contact_name = tk.Entry(main_frame, textvariable=self.emergency_contact_name,
+                                                    font=font_ems)
         self.text_emergency_contact_name.grid(row=9, column=1, padx=10, pady=10, sticky=W)
         # Emergency Contact Phone
         lbl_emergency_contact_phone = tk.Label(main_frame, text='Emergency Contact Phone', font=font_ems)
         lbl_emergency_contact_phone.grid(row=9, column=2, padx=10, pady=10, sticky=W)
-        self.text_emergency_contact_phone = tk.Entry(main_frame, textvariable=self.emergency_contact_phone, font=font_ems)
+        self.text_emergency_contact_phone = tk.Entry(main_frame, textvariable=self.emergency_contact_phone,
+                                                     font=font_ems)
         self.text_emergency_contact_phone.grid(row=9, column=3, padx=10, pady=10, sticky=W)
 
         # ROW 10
@@ -304,9 +308,9 @@ class EmployeeManagementGUI(tk.Tk):
         # display treeview in the frame
         self.staff_list_tv.pack(side=LEFT)
 
-    # TODO Function to add an employee
     def add_record(self):
         """Function to add a new employee"""
+        # check if any inputs are blank
         if self.text_first_name.get() == '' or self.text_last_name.get() == '' \
                 or self.text_position.get() == '' or self.text_salary.get() == '' \
                 or self.text_start_date.get() == '' or self.text_reports_to.get() == '' \
@@ -337,14 +341,43 @@ class EmployeeManagementGUI(tk.Tk):
             self.clear_boxes()
             messagebox.showinfo(message='record added')
 
-    # TODO Function to delete an employee record
     def delete_record(self):
         """Function to delete an employee record"""
+        # get details of employee to delete
+        current_item = self.staff_list_tv.focus()
+        current_row = self.staff_list_tv.item(current_item)
+        current_record = current_row['values']
+        emp_id = current_record[0]
+        first_name = current_record[1]
+        last_name = current_record[2]
+
+        # are you sure message
+        delete_message = f"Are you sure you want to delete \nemployee {emp_id}: {first_name} {last_name}?"
+
+        # check its ok to delete
+        if messagebox.askyesno(title="EMS", message=delete_message):
+            # delete if yes
+            self.employee_data.delete_employee(emp_id)
+            self.display_all()
+            # status message
+            messagebox.showinfo(title="EMS", message="Employee deleted")
+
+    # TODO Function to display a record for editing
+    def edit_record(self):
+        # get row data from tree view
+
+        # display data in entry boxes
+
+        # update window title with employee number?
         pass
 
     # TODO Function to save changes to the current record
     def save_changes(self):
         """Function to save changes to the current record"""
+        # check there are no empty boxes
+
+        # save the changes
+        pass
 
     def clear_boxes(self):
         """function to clear all the boxes in the form"""
