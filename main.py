@@ -69,14 +69,14 @@ class EmployeeData:
         # find dataframe row number for the given employee id
         row_num = self.df[self.df['EmployeeID'] == updated_record['EmployeeID']].index[0]
 
-        # update teh dataframe row with the updated record
+        # update the dataframe row with the updated record
         for field in updated_record:
             if updated_record[field] != 'EmployeeID':
                 self.df.at[row_num, field] = updated_record[field]
 
     def delete_employee(self, employee_id):
         """delete employee with given employee id"""
-        # get row number
+        # get df row index using the employee id
         row_num = self.df[self.df['EmployeeID'] == employee_id].index[0]
 
         # delete the row
@@ -269,8 +269,8 @@ class EmployeeManagementGUI(tk.Tk):
         sbh.pack(side=BOTTOM, fill=X)
         self.staff_list_tv.config(xscrollcommand=sbh.set)
         sbh.config(command=self.staff_list_tv.xview)
-        # Bind double click to select row
-        self.staff_list_tv.bind('<Double-1>', "")
+        # Bind double click to select row for edit
+        self.staff_list_tv.bind('<Double-1>', self.edit_record)
 
     def load_file(self):
         """Load staff data from a csv file selected by the user"""
@@ -362,22 +362,67 @@ class EmployeeManagementGUI(tk.Tk):
             # status message
             messagebox.showinfo(title="EMS", message="Employee deleted")
 
-    # TODO Function to display a record for editing
-    def edit_record(self):
+    def edit_record(self, btn_press_state):
+        """function to load a record from the treeview and display it in the form for editing"""
         # get row data from tree view
+        current_item = self.staff_list_tv.focus()
+        current_row = self.staff_list_tv.item(current_item)
+        current_record = current_row['values']
 
         # display data in entry boxes
+        self.employee_id.set(current_record[0])
+        self.first_name.set(current_record[1])
+        self.last_name.set(current_record[2])
+        self.position.set(current_record[3])
+        self.salary.set(current_record[4])
+        self.email.set(current_record[5])
+        self.home_address.set(current_record[6])
+        self.home_postcode.set(current_record[7])
+        self.home_phone.set(current_record[8])
+        self.mobile_phone.set(current_record[9])
+        self.start_date.set(current_record[10])
+        self.reports_to.set(current_record[11])
+        self.emergency_contact_name.set(current_record[12])
+        self.emergency_contact_phone.set(current_record[13])
+        self.birth_date.set(current_record[14])
 
         # update window title with employee number?
-        pass
+        messagebox.showinfo(title='EMS', message=f'Employee {current_record[0]} selected')
 
-    # TODO Function to save changes to the current record
     def save_changes(self):
         """Function to save changes to the current record"""
-        # check there are no empty boxes
+        # check if any inputs are blank
+        if self.text_first_name.get() == '' or self.text_last_name.get() == '' \
+                or self.text_position.get() == '' or self.text_salary.get() == '' \
+                or self.text_start_date.get() == '' or self.text_reports_to.get() == '' \
+                or self.text_email.get() == '' or self.text_home_address.get() == '' \
+                or self.text_home_postcode.get() == '' or self.text_home_phone.get() == '' \
+                or self.text_mobile_phone.get() == '' or self.text_birth_date.get() == '' \
+                or self.text_emergency_contact_name.get() == '' or self.text_emergency_contact_phone.get() == '':
+            messagebox.showerror(title='Employee Management System',
+                                 message='Please complete all fields')
+        else:
+            # save the changes
+            updated_record = {'EmployeeID': int(self.employee_id.get()),
+                              'FirstName': self.text_first_name.get(),
+                              'LastName': self.text_last_name.get(),
+                              'Position': self.text_position.get(),
+                              'Salary': self.text_salary.get(),
+                              'Email': self.text_email.get(),
+                              'HomeAddress': self.text_home_address.get(),
+                              'HomePostcode': self.text_home_postcode.get(),
+                              'HomePhone': self.text_home_phone.get(),
+                              'MobilePhone': self.text_mobile_phone.get(),
+                              'StartDate': self.text_start_date.get(),
+                              'ReportsTo': self.text_reports_to.get(),
+                              'EmergencyContactName': self.text_emergency_contact_name.get(),
+                              'EmergencyContactPhone': self.text_emergency_contact_phone.get(),
+                              'BirthDate': self.text_birth_date.get()}
 
-        # save the changes
-        pass
+            self.employee_data.edit_employee(updated_record)
+            self.display_all()
+            self.clear_boxes()
+            messagebox.showinfo(message=f'Employee {updated_record["EmployeeID"]} updated')
 
     def clear_boxes(self):
         """function to clear all the boxes in the form"""

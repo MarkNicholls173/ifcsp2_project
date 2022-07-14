@@ -36,22 +36,11 @@ class TestEmployeeData(unittest.TestCase):
         self.ed.load_file("staff_data.xlsx")
         self.assertIsInstance(self.ed.df, pd.DataFrame)
 
-    # TODO negative tests for when load_file breaks
-    # def test_load_csv_file_negative(self):
-    #     """does load csv file produce error when given bad file"""
-    #     self.assertRaises(UnicodeDecodeError, self.app.FileHandler.load_csv_file("bad_file.csv"))
-
-    # def test_load_xlsx_file_negative(self):
-    #     """does load xlsx file produce error when given bad file"""
-    #     self.assertRaises(UnicodeDecodeError, self.app.FileHandler.load_xlsx_file("bad_file.xlsx"))
-
     def test_get_employee(self):
         """test getting employee details based on employee id"""
         self.ed.load_file("staff_data.csv")
         employee_data = self.ed.get_employee(1000001)
         self.assertIsInstance(employee_data, pd.DataFrame)
-
-    # TODO tests for saving a file to csv and xlsx
 
     def test_get_new_employee_number(self):
         """test that first employee number generated is correct"""
@@ -73,8 +62,6 @@ class TestEmployeeData(unittest.TestCase):
         self.ed.load_file('staff_data.csv')
         self.ed.delete_employee(1000044)
         self.assertEqual(len(self.ed.df.loc[self.ed.df['EmployeeID'] == 1000044]), 0)
-
-
 
 
 if __name__ == '__main__':
