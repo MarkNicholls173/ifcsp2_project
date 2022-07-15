@@ -36,6 +36,44 @@ class TestEmployeeData(unittest.TestCase):
         self.ed.load_file("staff_data.xlsx")
         self.assertIsInstance(self.ed.df, pd.DataFrame)
 
+    def test_load_bad_csv_file(self):
+        """does loading bad csv produce the correct message"""
+        filename = 'bad_file.csv'
+        message = self.ed.load_file(filename)
+        self.assertEqual(message, f"Error: cannot read {filename}")
+
+    def test_load_bad_xlsx_file(self):
+        """does loading bad xlsx produce the correct message"""
+        filename = 'bad_file.xlsx'
+        message = self.ed.load_file(filename)
+        self.assertEqual(message, f"Error: cannot read {filename}")
+
+    def test_load_unsupported_file_type(self):
+        """does attempting to load unsupported file type produce the correct message"""
+        filename = 'unsupported.pdf'
+        message = self.ed.load_file(filename)
+        self.assertEqual(message, f"File type not supported: {filename}")
+
+    def test_save_csv_file(self):
+        """does saving csv file produce the correct message"""
+        save_filename = 'updated_data.csv'
+        self.ed.load_file("staff_data.csv")
+        message = self.ed.save_file(save_filename)
+        self.assertEqual(message, "File saved!")
+
+    def test_save_xlsx_file(self):
+        """does saving csv file produce the correct message"""
+        save_filename = 'updated_data.xlsx'
+        self.ed.load_file("staff_data.xlsx")
+        message = self.ed.save_file(save_filename)
+        self.assertEqual(message, "File saved!")
+
+    def test_save_unsupported_file_type(self):
+        """does attempting to save to an unsupported file type produce the correct message"""
+        save_filename = 'unsupported.pdf'
+        message = self.ed.save_file(save_filename)
+        self.assertEqual(message, "Error: File type not supported")
+
     def test_get_employee(self):
         """test getting employee details based on employee id"""
         self.ed.load_file("staff_data.csv")
