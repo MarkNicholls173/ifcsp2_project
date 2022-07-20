@@ -1,5 +1,9 @@
 # Employee Management System project
 
+This is a project for the Intensive Foundations of Computer Science and Programming II module of my data science apprenticeship
+
+It is a basic python application to manage some employee data through a GUI 
+
 ## Installation
 
 clone the git hub repo.
