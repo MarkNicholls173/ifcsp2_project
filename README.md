@@ -6,17 +6,17 @@ It is a basic python application to manage some employee data through a GUI
 
 ## Installation
 
-clone the git hub repo.
+Clone the git hub repo into a folder on your the machine
 
-for example, clone into the current directory use:
+For example, clone into the current directory use:
 
 `git clone https://github.com/MarkNichollsDVSA/ifcsp2_project .`
 
 
 ## Opening the GUI
 
-run the main.py file
+Run the main.py file
 
-for example, on windows:
+For example, on windows:
 
 `py main.py`
